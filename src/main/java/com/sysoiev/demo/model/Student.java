@@ -1,5 +1,7 @@
 package com.sysoiev.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Student {
@@ -9,7 +11,12 @@ public class Student {
     private final String lastName;
     private final String course;
 
-    public Student(UUID id, Integer age, String firstName, String lastName, String course) {
+    public Student(
+            @JsonProperty("id") UUID id,
+            @JsonProperty("age") Integer age,
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("course") String course) {
         this.id = id;
         this.age = age;
         this.firstName = firstName;
