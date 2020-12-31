@@ -4,10 +4,7 @@ import com.sysoiev.demo.model.Student;
 import com.sysoiev.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,10 +28,28 @@ public class StudentController {
     }
 
     @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            path = "{studentId}"
+    )
+    public Student getStudentById(@PathVariable("studentId") UUID studentId) {
+        return studentService.getStudentById(studentId);
+    }
+
+    @RequestMapping(
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public void insertNewStudent(@RequestBody Student student) {
         studentService.persistNewStudent(UUID.randomUUID(), student);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            path = "{studentId}"
+    )
+    public void deleteStudentById(@PathVariable("studentId") UUID studentId) {
+        studentService.deleteStudentById(studentId);
     }
 }
