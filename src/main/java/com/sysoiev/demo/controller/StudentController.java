@@ -52,4 +52,14 @@ public class StudentController {
     public void deleteStudentById(@PathVariable("studentId") UUID studentId) {
         studentService.deleteStudentById(studentId);
     }
+
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            path = "{studentId}"
+    )
+    public void updateStudentById(@PathVariable("studentId") UUID studentId, @RequestBody Student student) {
+        studentService.updateStudentById(studentId, student);
+    }
+
 }
