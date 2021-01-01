@@ -46,7 +46,6 @@ public class StudentController {
 
     @RequestMapping(
             method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             path = "{studentId}"
     )
     public void deleteStudentById(@PathVariable("studentId") UUID studentId) {
